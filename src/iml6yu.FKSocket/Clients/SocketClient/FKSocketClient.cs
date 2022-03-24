@@ -15,17 +15,27 @@ namespace iml6yu.FKSocket.Clients.SocketClient
         private HeartClientManager _heartManager;
 
         private bool _isConnected;
+        private int _reCount;
+
         public bool IsConnected => _isConnected;
 
         public event Action<bool, string> ConnectStateChanged;
         public event Action<string> Received;
         public event Action<Exception> ReceiveException;
+        public event Action<int> ReConnectioned;
 
         internal FKSocketClient(SocketOption option)
         {
             _socketOption = option;
-            _client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, option.ConnectType);
+            this.ConnectStateChanged += FKSocketClient_ConnectStateChanged;
         }
+
+        private void FKSocketClient_ConnectStateChanged(bool flag, string msg)
+        {
+            if (flag)
+                _reCount = 0;
+        }
+
         /// <summary>
         /// 进行连接
         /// </summary>
@@ -34,6 +44,7 @@ namespace iml6yu.FKSocket.Clients.SocketClient
         {
             try
             {
+                _client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, _socketOption.ConnectType);
                 _client.Connect(_socketOption.Host, _socketOption.Port);
                 _token = new CancellationTokenSource();
                 StartReceive();
@@ -49,7 +60,7 @@ namespace iml6yu.FKSocket.Clients.SocketClient
             {
                 Task.Run(() =>
                 {
-                    while (!_token.IsCancellationRequested)
+                    while (IsConnected && !_token.IsCancellationRequested)
                     {
                         byte[] buffer = new byte[2048];
                         var length = _client.Receive(buffer);
@@ -59,13 +70,24 @@ namespace iml6yu.FKSocket.Clients.SocketClient
                     }
                 }).ContinueWith(t =>
                 {
-                    if (IsConnected)
+                    if (_socketOption.AutoReConnection && _socketOption.ReConnectionMax < _reCount++)
                     {
-                        StartReceive();
+                        Connect().OpenHeartCheck();
                         ReceiveException?.Invoke(t.Exception);
                     }
 
+
                 }, TaskContinuationOptions.OnlyOnFaulted);
+            }
+        }
+
+        public void DisConnection()
+        {
+            _reCount = _socketOption.ReConnectionMax;
+            if (_client != null && IsConnected)
+            {
+                _client.Shutdown(SocketShutdown.Both);
+                _heartManager?.StopHeart();
             }
         }
 
@@ -93,6 +115,11 @@ namespace iml6yu.FKSocket.Clients.SocketClient
             {
                 this.ConnectStateChanged?.Invoke(flag, msg);
                 _isConnected = flag;
+                if (!_isConnected && _socketOption.AutoReConnection && _socketOption.ReConnectionMax > _reCount++)
+                {
+                    ReConnectioned?.Invoke(_reCount);
+                    Connect().OpenHeartCheck();
+                }
             };
             _heartManager.UseHeart(_client);
             return this;
@@ -115,6 +142,13 @@ namespace iml6yu.FKSocket.Clients.SocketClient
             }
             return _client.Send(_socketOption.Encoding.GetBytes(message)) > 0;
         }
+
+        public void OpenAutoReConnection(int reConnectionMax)
+        {
+            _socketOption.AutoReConnection = true;
+            _socketOption.ReConnectionMax = reConnectionMax;
+        }
+
         public void Dispose()
         {
             if (this._client != null && _client.Connected)

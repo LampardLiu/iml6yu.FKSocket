@@ -46,25 +46,22 @@ namespace iml6yu.FKSocket.Clients
         {
             if (socket == null)
                 throw new ArgumentNullException(nameof(socket));
-
+            if (!socket.Connected)
+            {
+                Changed?.Invoke(false, $"{nameof(socket)}未连接");
+                return;
+            }
             socket.IOControl(IOControlCode.KeepAliveValues, GetKeepAliveData(), null);
             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
             Task.Run(() =>
             {
                 _token = new System.Threading.CancellationTokenSource();
-                while (!_token.IsCancellationRequested)
+                while (_token != null && !_token.IsCancellationRequested)
                 {
-                    if (!socket.Connected)
-                    {
-                        Changed?.Invoke(false, $"{nameof(socket)}未连接");
-                    }
-                    else
-                    {
-                        var state = IsConnect(socket);
-                        if (_currentHeartState != state)
-                            Changed?.Invoke(state, state ? "心跳正常" : "心跳断开");
-                        _currentHeartState = state;
-                    }
+                    var state = IsConnect(socket);
+                    if (_currentHeartState != state)
+                        Changed?.Invoke(state, state ? "心跳正常" : "心跳断开");
+                    _currentHeartState = state;
                     Task.Delay(_option.Interval).Wait();
                 }
             });
@@ -75,6 +72,7 @@ namespace iml6yu.FKSocket.Clients
         {
             _token?.Cancel();
             _token?.Dispose();
+            _token = null;
         }
 
         private byte[] GetKeepAliveData()
