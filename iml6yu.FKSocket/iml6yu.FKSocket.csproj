@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Version>0.0.1-bate2202401</Version>
+		<Authors>iml6yu</Authors>
+		<Description>一个简化socket通信的类库</Description>
+		<Copyright>@iml6yu</Copyright>
+		<PackageIcon>favorite_64.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>socket;netcore;fk;heart</PackageTags>
+		<PackageReleaseNotes>第一个仅包含客户端的tcp通信类</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Clients\SignalRClient\**" />
+	  <Compile Remove="Clients\WebSocketClient\**" />
+	  <EmbeddedResource Remove="Clients\SignalRClient\**" />
+	  <EmbeddedResource Remove="Clients\WebSocketClient\**" />
+	  <None Remove="Clients\SignalRClient\**" />
+	  <None Remove="Clients\WebSocketClient\**" />
+	  <None Include="..\..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Contracts\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\favorite_64.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>
