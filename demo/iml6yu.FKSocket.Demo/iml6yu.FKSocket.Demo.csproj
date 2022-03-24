@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\iml6yu.FKSocket\iml6yu.FKSocket.csproj" />
+    <PackageReference Include="iml6yu.FKSocket" Version="0.0.1-bate2202402" />
   </ItemGroup>
 
 </Project>

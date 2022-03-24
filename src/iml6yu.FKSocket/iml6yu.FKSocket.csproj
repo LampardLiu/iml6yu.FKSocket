@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>0.0.1-bate2202401</Version>
+		<Version>0.0.1-bate2202402</Version>
 		<Authors>iml6yu</Authors>
 		<Description>一个简化socket通信的类库</Description>
 		<Copyright>@iml6yu</Copyright>
@@ -13,6 +13,8 @@
 		<PackageReleaseNotes>第一个仅包含客户端的tcp通信类</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageProjectUrl>https://github.com/LampardLiu/iml6yu.FKSocket</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/LampardLiu/iml6yu.FKSocket.git</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,21 +24,22 @@
 	  <EmbeddedResource Remove="Clients\WebSocketClient\**" />
 	  <None Remove="Clients\SignalRClient\**" />
 	  <None Remove="Clients\WebSocketClient\**" />
+	  <None Include="..\..\..\favorite_64.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	  <None Include="..\..\LICENSE">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
+	  </None>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Contracts\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="..\..\favorite_64.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
 	</ItemGroup>
 
 	<ItemGroup>

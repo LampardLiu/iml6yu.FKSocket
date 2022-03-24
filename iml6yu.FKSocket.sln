@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iml6yu.FKSocket", "iml6yu.FKSocket\iml6yu.FKSocket.csproj", "{193920D2-B82A-4735-BFFA-48AD1CD2FB58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iml6yu.FKSocket", "src\iml6yu.FKSocket\iml6yu.FKSocket.csproj", "{6F66FC96-3017-4412-BA7F-E57025E34E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iml6yu.FKSocket.Demo", "iml6yu.FKSocket.Demo\iml6yu.FKSocket.Demo.csproj", "{CE9D855D-6BC9-4899-931D-800771C79B0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iml6yu.FKSocket.Demo", "demo\iml6yu.FKSocket.Demo\iml6yu.FKSocket.Demo.csproj", "{E42B0167-7101-44AB-BBD7-EBC2A5A96494}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{76511688-8776-42A0-BCFC-613A030F5FA8}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{193920D2-B82A-4735-BFFA-48AD1CD2FB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{193920D2-B82A-4735-BFFA-48AD1CD2FB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{193920D2-B82A-4735-BFFA-48AD1CD2FB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{193920D2-B82A-4735-BFFA-48AD1CD2FB58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE9D855D-6BC9-4899-931D-800771C79B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE9D855D-6BC9-4899-931D-800771C79B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE9D855D-6BC9-4899-931D-800771C79B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE9D855D-6BC9-4899-931D-800771C79B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F66FC96-3017-4412-BA7F-E57025E34E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F66FC96-3017-4412-BA7F-E57025E34E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F66FC96-3017-4412-BA7F-E57025E34E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F66FC96-3017-4412-BA7F-E57025E34E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42B0167-7101-44AB-BBD7-EBC2A5A96494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42B0167-7101-44AB-BBD7-EBC2A5A96494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42B0167-7101-44AB-BBD7-EBC2A5A96494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42B0167-7101-44AB-BBD7-EBC2A5A96494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
