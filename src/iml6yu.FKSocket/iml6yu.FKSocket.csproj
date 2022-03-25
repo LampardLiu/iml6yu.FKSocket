@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>0.0.1-bate2202501</Version>
 		<Authors>iml6yu</Authors>
