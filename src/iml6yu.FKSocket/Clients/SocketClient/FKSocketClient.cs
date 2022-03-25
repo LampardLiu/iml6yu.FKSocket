@@ -31,7 +31,7 @@ namespace iml6yu.FKSocket.Clients.SocketClient
         }
 
         private void FKSocketClient_ConnectStateChanged(bool flag, string msg)
-        {
+        { 
             if (flag)
                 _reCount = 0;
         }
@@ -60,10 +60,10 @@ namespace iml6yu.FKSocket.Clients.SocketClient
             {
                 Task.Run(() =>
                 {
-                    while (IsConnected && !_token.IsCancellationRequested)
+                    while (_client.Connected && !_token.IsCancellationRequested)
                     {
-                        byte[] buffer = new byte[2048];
-                        var length = _client.Receive(buffer);
+                        byte[] buffer = new byte[2048]; 
+                        var length = _client.Receive(buffer); 
                         if (length == 0) continue;
                         var message = Encoding.UTF8.GetString(buffer);
                         Task.Run(() => { Received?.Invoke(message); });

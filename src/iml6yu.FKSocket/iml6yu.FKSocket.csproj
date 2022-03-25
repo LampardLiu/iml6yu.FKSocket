@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>0.0.1-bate2202403</Version>
+		<Version>0.0.1-bate2202501</Version>
 		<Authors>iml6yu</Authors>
 		<Description>一个简化socket通信的类库,支持了断线重连。</Description>
 		<Copyright>@iml6yu</Copyright>
@@ -15,6 +15,8 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/LampardLiu/iml6yu.FKSocket</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/LampardLiu/iml6yu.FKSocket.git</RepositoryUrl>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile></DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

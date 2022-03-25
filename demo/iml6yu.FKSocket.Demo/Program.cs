@@ -5,8 +5,8 @@ Console.WriteLine("Hello, World!");
 
 var client = FKSocketManager.CreateClient(new SocketOption()
 {
-    Host = "127.0.0.1",
-    Port = 30000
+    Host = "192.168.3.100",
+    Port = 51236
 });
 
 //连接状态
